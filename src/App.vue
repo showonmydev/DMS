@@ -13,6 +13,7 @@ export default {
 <style>
  .tippy-tooltip.tool-theme {
   /* Your styling here. Example: */
-  font-size: 13px;
+  font-size: 10px;
+  width: 70px;
  }
 </style>

@@ -5,24 +5,24 @@
     <div class="pull-left"> {{ tablegroup }} / </div>
     <div class="pull-right">1 Row Selected</div>
   </div>
-  <el-table ref="singleTable" :data="getAllData" highlight-current-row border scroll @selection-change="handleSelectionChange" @current-change="handleCurrentChange" style="width: 100%">
+  <el-table ref="singleTable" :data="tableData" highlight-current-row border scroll @selection-change="handleSelectionChange" @current-change="handleCurrentChange" style="width: 100%">
     <el-table-column type="selection" label="ID" trigger="hover">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.name" width="120" sortable label="Name">
+    <el-table-column prop="name" width="120" sortable label="Name">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.model" sortable label="Model">
+    <el-table-column prop="model" sortable label="Model">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.type" sortable label="Type">
+    <el-table-column prop="type" sortable label="Type">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.group" sortable label="Group">
+    <el-table-column prop="group" sortable label="Group">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.MACAddress" sortable label="MAC Add.">
+    <el-table-column prop="MACAddress" sortable label="MAC Add.">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.IPAddress" sortable label="IP Add.">
+    <el-table-column prop="IPAddress" sortable label="IP Add.">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.SerialNumber" sortable label="Serial">
+    <el-table-column prop="SerialNumber" sortable label="Serial">
     </el-table-column>
-    <el-table-column prop="Deviceinfo.Version" sortable label="Version">
+    <el-table-column prop="Version" sortable label="Version">
     </el-table-column>
   </el-table>
 </div>
@@ -39,24 +39,27 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      tableData: [],
+      tableData: [{'name': 'text', 'model': 'text', 'type': 'text', 'group': 'text', 'MACAddress': 'text', 'IPAddress': 'text', 'SerialNumber': 'text', 'Version': 'text'}],
       multipleSelection: []
     }
   },
   computed: {
     getAllData: function () {
-      let data = this.$store.state
-      let a = Object.values(data)
-      return a[0][this.tablegroup][this.tablegroupid]
-      // console.log(data)
-      // //let data1 = Object.getOwnPropertyDescriptor(Object.getOwnPropertyDescriptor(data, this.tablegroup).value,this.tablegroupid).value;
-      // let data1 = Object.getOwnPropertyDescriptor(data, this.tablegroup).value
-      // console.log("final")
-      // console.log(data1)
-      // this.tableData = data1
-      // console.log(this.tableData)
-      // // console.log("hsfgdh")
-      // return this.tableData
+      return {'name': 'text', 'model': 'text', 'type': 'text', 'group': 'text', 'MACAddress': 'text', 'IPAddress': 'text', 'SerialNumber': 'text', 'Version': 'text'}
+      // let data = this.$store.state
+      // let a = Object.values(data)
+      // if (this.tablegroupid === 'empty') {
+      //   let data = Object.values(a[0][this.tablegroup])
+      //   let arr = []
+      //   data.forEach(function (value, i) {
+      //     value.forEach(function (value1, i) {
+      //       arr.push(value1)
+      //     })
+      //   })
+      //   return arr
+      // } else {
+      //   return a[0][this.tablegroup][this.tablegroupid]
+      // }
     }
   },
   methods: {

@@ -1,13 +1,13 @@
 <template>
 <div class="main-right-sidebar">
-      <div class="right-top"><a class="right-sidebar-toggle" href="#" title="Open Action Panel" v-tippy="{ placement : 'left',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><span class="glyphicon glyphicon-backward"></span></a></div>
+      <div class="right-top"><a class="right-sidebar-toggle" href="#" title="Open Action Panel" v-tippy="{ placement : 'bottom',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><span class="glyphicon glyphicon-backward"></span></a></div>
       <div class="col-xs-4 right-tabs-icons">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs tabs-left" title="Action bar">
-          <li class="active info"><a href="#info" data-toggle="tab" title="Information" v-tippy="{ placement : 'left',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-info-circle"></i></a></li>
-          <li class="control"><a href="#control" data-toggle="tab" title="Controls" v-tippy="{ placement : 'left',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-wrench"></i></a></li>
-          <li class="update"><a href="#update" data-toggle="tab" title="Software Upgrade" v-tippy="{ placement : 'left',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-sign-in"></i></a></li>
-          <li class="scheduling"><a href="#scheduling" data-toggle="tab" title="Scheduling" v-tippy="{ placement : 'left',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-calendar"></i></a></li>
+        <ul class="nav nav-tabs tabs-left">
+          <li class="active info"><a href="#info" data-toggle="tab" title="Information" v-tippy="{ placement : 'bottom',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-info-circle"></i></a></li>
+          <li class="control"><a href="#control" data-toggle="tab" title="Controls" v-tippy="{ placement : 'bottom',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-wrench"></i></a></li>
+          <li class="update"><a href="#update" data-toggle="tab" title="Software Upgrade" v-tippy="{ placement : 'bottom',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-sign-in"></i></a></li>
+          <li class="scheduling"><a href="#scheduling" data-toggle="tab" title="Scheduling" v-tippy="{ placement : 'bottom',  theme: 'tool', duration: 500, arrow: true, size: 'large' }"><i class="fa fa-calendar"></i></a></li>
         </ul>
       </div>
       <div class="col-xs-8 right-tabs-con">
