@@ -8,12 +8,96 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <link rel="stylesheet" href="/resources/demos/style.css">
-      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="static/jquery.dragtable.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/dragtable.css" />
+
+    <!-- only for jquery.chili-2.2.js -->
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+    <script type="text/javascript" src="http://akottr.github.io/js/jquery.chili-2.2.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('.contextMenu').hide();
+    $('.main-right-sidebar').attr('style','max-width:606 !important;')
+    $('#footerTable').dragtable({dragaccept:'.accept'});
+    $( function() {
+        var widths = $('.centerBar').width();
+        var mainSideBar = $('.main-right-sidebar').width();
+        $( ".centerBar" ).resizable({
+        minWidth: 510,
+        maxWidth: 1010,
+        alsoResize: "#also",
+        resize: function( event, ui ) {
+                //$('.main-right-sidebar').attr('style','right:0');
+                var wi = parseInt(widths) - parseInt(ui.size.width)
+                var main = parseInt(mainSideBar) - parseInt(wi)
+                console.log(wi);
+                if($('.content-wrapper').width() === 510){
+                    $('.main-right-sidebar').width(582)
+                    $('.right-sidebar-toggle .glyphicon-forward').addClass('glyphicon-backward')
+                    $('.right-sidebar-toggle .glyphicon-backward').removeClass('glyphicon-forward')
+                } else {
+                    $('.right-sidebar-toggle .glyphicon-backward').addClass('glyphicon-forward')
+                    $('.right-sidebar-toggle .glyphicon-forward').removeClass('glyphicon-backward')
+                    $('.main-right-sidebar').width(wi+80)
+                }
+          }
+        });
+        $( "#also" ).resizable();
+    } );
+
+    // $( function() {
+    //     var widths = $('.centerBar').width();
+    //     var mainSideBar = $('.lftbar').width();
+    //     $( ".centerBar" ).resizable({
+    //     minWidth: 510,
+    //     maxWidth: 995,
+    //     alsoResize: ".lftbar",
+    //     resize: function( event, ui ) {
+    //             //$('.main-right-sidebar').attr('style','right:0');
+    //             var wi = parseInt(widths) - parseInt(ui.size.width)
+    //             var main = parseInt(mainSideBar) - parseInt(wi)
+    //             console.log(wi);
+    //             if($('.content-wrapper').width() === 510){
+    //                 $('.main-right-sidebar').width(582)
+    //             } else {
+    //                 $('.main-right-sidebar').width(wi+80)
+    //             }
+    //       }
+    //     });
+    //     $( ".lftbar" ).resizable();
+    // } );
+
+    // $(".content-wrapper").resizable({handles: 'e'})
+    $('span').click(function() {
+        setTimeout(function(){
+            $("table tr, table tr td").resizable({handles: 'e'})
+        }, 500);
+    })
+    $('#submenu-1 .groupInspan').click(function(){
+        $('#submenu-1 span').removeClass('active');
+        $(this).parents("span").addClass('active');
+    });
+
+    $(document).on('click', '.fa-caret-down', function() {
+        console.log('LEFt')
+        $(this).addClass('fa-caret-right')
+        $(this).removeClass('fa-caret-down')
+    });
+
+    $(document).on('click', '.fa-caret-right', function() {
+        console.log('RIGHT')
+        $(this).addClass('fa-caret-down');
+        $(this).removeClass('fa-caret-right');
+    });
+
+    });
+  </script>
   </head>
   <body>
     <div id="app"></div>
@@ -46,7 +130,41 @@ $(window).on('resize', function(){
 <script>
     $(document).ready(function() {
         $(".right-sidebar-toggle").click(function () {
-        $("body").toggleClass('sidebar-collapse');
+        //$("body").toggleClass('sidebar-collapse');
+        if($('.lftbar').css('display') != 'none' &&  $('.main-right-sidebar').width() <= 85 ){
+            $('.right-sidebar-toggle .glyphicon-backward').addClass('glyphicon-forward')
+            $('.right-sidebar-toggle .glyphicon-forward').removeClass('glyphicon-backward')
+            $('.lftbar').hide()
+            $('.centerBar').width('58%')
+            $('.main-right-sidebar').width('42%')
+        }else{
+            $('.right-sidebar-toggle .glyphicon-forward').addClass('glyphicon-backward')
+            $('.right-sidebar-toggle .glyphicon-backward').removeClass('glyphicon-forward')
+            $('.lftbar').show()
+            $('.centerBar').width('74%')
+            $('.main-right-sidebar').width('6%')
+        }
+        
     });
+    $(".left-sidebar-toggle").click(function () {
+        //$("body").toggleClass('leftsidebar-collapse');
+        if($('.lftbar').css('display') != 'none'){
+            $('.left-sidebar-toggle .glyphicon-backward').addClass('glyphicon-forward')
+            $('.left-sidebar-toggle .glyphicon-forward').removeClass('glyphicon-backward')
+
+            $('.lftbar').hide()
+            $('#resizable').attr('style','max-width:100%');
+            $('.centerBar').width('94%')
+            $('.main-right-sidebar').width('81.7px');
+        }else{
+            $('.left-sidebar-toggle .glyphicon-forward').addClass('glyphicon-backward')
+            $('.left-sidebar-toggle .glyphicon-backward').removeClass('glyphicon-forward')
+
+            $('.lftbar').show()
+            $('#resizable').attr('style','max-width:1040px');
+            $('.centerBar').width('74%')
+            $('.main-right-sidebar').width('6%');
+        }
     });
+});
 </script>

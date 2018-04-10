@@ -2,75 +2,469 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
+  strict: true,
   'state': {
     'L1': {
       'all': {
-        'name': 'All',
+        'name': 'all',
         'parentnode': null,
         'Device': null
       }
     },
     'L2': {
       'uncategories': {
-        'name': 'Uncategories',
-        'parentnode': 'all',
-        'Device': {'name': 'TPE02-D01 This is 1'}
+        'name': 'uncategories',
+        'parentnode': 'all'
       },
       'tgtest': {
-        'name': 'TG Test',
-        'parentnode': 'all',
-        'Device': {'name': 'TPE02-D01 This is 2'}
+        'name': 'tgtest',
+        'parentnode': 'all'
       }
     },
     'L3': {
       'teo1': {
-        'name': 'TE-O1',
-        'parentnode': 'uncategories',
-        'Device': {'name': 'TPE02-D01 This is 3'}
+        'name': 'teo1',
+        'parentnode': 'teo10789'
       },
       'teo5': {
-        'name': 'TE-O5',
-        'parentnode': 'tgtest',
-        'Device': {'name': 'TPE02-D01 This is 4'}
+        'name': 'teo5',
+        'parentnode': 'tgtest'
       }
     },
     'L4': {
       'teo10789': {
-        'name': 'TE10',
-        'parentnode': 'teo5',
-        'Device': {'name': 'TPE02-D01 This is 5'}
+        'name': 'teo10789',
+        'parentnode': 'teo5'
       },
       'teo389': {
-        'name': 'TE-O3',
-        'parentnode': 'teo5',
-        'Device': {'name': 'TPE02-D01 This is 6'}
+        'name': 'teo389',
+        'parentnode': 'teo5'
       }
     },
     'L5': {
       'teo145': {
-        'name': 'TE10',
-        'parentnode': 'teo389',
-        'Device': {'name': 'TPE02-D01 This is 7'}
+        'name': 'teo145',
+        'parentnode': 'teo389'
       },
       'teo311': {
-        'name': 'TE-O3',
-        'parentnode': 'teo389',
-        'Device': {'name': 'TPE02-D01 This is 8'}
+        'name': 'teo311',
+        'parentnode': 'teo389'
       }
     },
     'L6': {
       'teo11': {
-        'name': 'TE10',
-        'parentnode': 'teo10789',
-        'Device': {'name': 'TPE02-D01 This is 9'}
+        'name': 'teo11',
+        'parentnode': 'teo10789'
       },
       'teo31': {
-        'name': 'TE-O3',
-        'parentnode': 'teo10789',
-        'Device': {'name': 'TPE02-D01 This is 10'}
+        'name': 'teo31',
+        'parentnode': 'teo10789'
       }
+    },
+    'Setting': {
+      'context': false,
+      'showHideColumn': {
+        name: true,
+        model: true,
+        type: true,
+        group: true,
+        mcaAddress: true,
+        ipAddress: true,
+        serial: true,
+        version: true
+      },
+      'toolTipTitle': {
+        refresh: 'Refresh',
+        add: 'Add',
+        settings: 'Settings',
+        account: 'Account',
+        actionPanel: 'Open Action Panel',
+        information: 'Information',
+        controls: 'Controls',
+        softwareUpgrade: 'Software Upgrade',
+        scheduling: 'Scheduling'
+      },
+      DisplayTableData: {},
+      GetParentKey: {},
+      DragdropContainer: {}
+    },
+    'Device': {'teo31': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'teo11': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'teo311': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'teo145': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'teo389': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'teo10789': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'uncategories': [{'name': 'TPE02-D01 This is 1',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'},
+    {'name': 'TPE02-D01 This is 2',
+      'model': 'ST550K',
+      'type': 'Display',
+      'group': 'TPE02',
+      'MACAddress': 'B0-C5-CA-70-00-10',
+      'IPAddress': '10.27.27.89',
+      'SerialNumber': '236131200059XA0014',
+      'Version': '2.0.2_WW',
+      'Power': 'This is 1 on',
+      'Source': 'Android',
+      'Signal Status': 'Stable',
+      'AVMute': 'on',
+      'Mute': 'off',
+      'PictureMode': 'N/A',
+      'AspectRatio': 'N/A',
+      'AmbientSensor': 'N/A',
+      'Error': 'No error',
+      'CPU': '20',
+      'Memory': '61',
+      'Network': '1.2'}],
+    'tgtest': [],
+    'teo5': []
+    }
+  },
+  getters: {
+    getAll: state => state
+  },
+  mutations: {
+    addStore: (state, newGroupobj) => {
+      let level = newGroupobj.level
+      let cuu = 'L' + parseInt(parseInt(level[1]) + parseInt(1))
+      delete newGroupobj['level']
+      Vue.set(state[cuu], newGroupobj.name, newGroupobj)
+      Vue.set(state.Device, newGroupobj.name, [])
+    },
+    addDevice: (state, newDeviceobj) => {
+      let ParentKey = newDeviceobj.parentkey
+      delete newDeviceobj['parentkey']
+      console.log(newDeviceobj)
+      // if (typeof state.Device[ParentKey] === 'undefined') {
+      //   Vue.set(state.Device, ParentKey, [])
+      //   state.Device[ParentKey].unshift(newDeviceobj)
+      // } else {
+      state.Device[ParentKey].unshift(newDeviceobj)
+      // }
+    },
+    DeleteStoreGroup: (state, newGroupobj) => {
+      Vue.delete(state[newGroupobj.level], [newGroupobj.groupkey])
+    },
+    DeleteDevice: (state, newDeviceobj) => {
+      // var Device = state.Device[newDeviceobj.groupkey]
+      // Device.splice(Device.indexOf(newDeviceobj.key), 1)
+      // state.Device[newDeviceobj.groupkey] = Device
+      Vue.delete(state.Device[newDeviceobj.groupkey], newDeviceobj.key)
+    },
+    RenameDevice: (state, newDeviceobj) => {
+      state.Device[newDeviceobj.groupkey][newDeviceobj.key].name = newDeviceobj.name
+    },
+    RenameGroup: (state, newDeviceobj) => {
+      state[newDeviceobj.level][newDeviceobj.groupkey].name = newDeviceobj.name
+      const data = state[newDeviceobj.level][newDeviceobj.groupkey]
+      Vue.set(state[newDeviceobj.level], newDeviceobj.groupkey, data)
+    },
+    ShowHideDetails: (state, field) => {
+      delete state.Setting.showHideColumn[field.key]
+      Vue.set(state.Setting.showHideColumn, field.key, field.value)
+    },
+    AddDataIntoTable: (state, parent) => {
+      delete state.Setting['DisplayTableData']
+      Vue.set(state.Setting, 'DisplayTableData', state.Device[parent])
+    },
+    GetDeviceFullInfo: (state, obj) => {
+      delete state.Setting.DisplayIndividualData
+      Vue.set(state.Setting, 'DisplayIndividualData', obj)
+    },
+    SetParentKey: (state, KeyObj) => {
+      delete state.Setting.GetParentKey[KeyObj.parentnode]
+      Vue.set(state.Setting, 'GetParentKey', KeyObj)
+    },
+    AppendDataIntoTableSchema: (state, dataObj) => {
+      delete state.Setting.DragdropContainer
+      Vue.set(state.Setting, 'DragdropContainer', dataObj)
+      var Device = state.Device[dataObj.parentKey]
+      Device.splice(dataObj.index, 1)
+      state.Device[dataObj.parentKey] = Device
+    },
+    AppendDataIntoActualPlace: (state, obj) => {
+      let list = state.Setting.DragdropContainer
+      state.Device[obj].unshift(list.list)
+      delete state.Setting.DragdropContainer
+    },
+    RecoverTableSchemaDropOtherSide: (state) => {
+      var dataObj = state.Setting.DragdropContainer
+      state.Device[dataObj.parentKey].unshift(dataObj.list)
+      delete state.Setting.DragdropContainer
+    },
+    UpdateInlineEdit: (state, obj) => {
+      state.Device[obj.key][obj.numKey][obj.name] = obj.value
+      console.log(state.Device[obj.key])
+    },
+    DropDeviceFromSideBar: (state, obj) => {
+      console.log('Drag DRop')
+      var data = state.Setting.DragdropContainer
+      console.log(data)
+      var dropfrom = obj.dropfrom
+      // var dropdatas = obj.dropdata
+      // if (data.length === 0) {
+      state.Device[dropfrom.name].unshift(data.list)
+      // }
+      // } else {
+      //   // key: "0", level: "L4", type: "device", groupkey: "teo10789", devicekey: "TPE02-D01 This is 1",
+      //   // let list = state.Device[obj.]
+      //   let list = state.Device[dropdatas.groupkey][dropdatas.key]
+      //   state.Device[dropfrom.name].unshift(list)
+      //   delete state.Device[dropdatas.groupkey][dropdatas.key]
+      // }
     }
   }
 })
-
 export default store

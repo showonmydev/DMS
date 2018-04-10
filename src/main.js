@@ -11,6 +11,11 @@ import VueDraggable from 'vue-draggable'
 import VueDragAndDropList from 'vue-drag-and-drop-list'
 import VModal from 'vue-js-modal'
 import draggable from 'vuedraggable'
+import Sortable from 'vue-sortable'
+import { Drag, Drop } from 'vue-drag-drop'
+Vue.component('drag', Drag)
+Vue.component('drop', Drop)
+Vue.use(Sortable)
 Vue.use(draggable)
 Vue.use(VueDragAndDropList)
 Vue.use(VModal, { dialog: true })
