@@ -11,7 +11,7 @@
     <drop @drop="drop" @dragover="handleDragover" @dragleave="handledragleave">
       <table id="footerTable" class="sar-table ui-widget-content table table-bordered">
         <thead>
-            <tr><th><div class="checkbox"><label><input type="checkbox" value=""><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></label></div>              </th>
+            <tr><th><div class="checkbox" @click="CheckAll()"><label><input type="checkbox" v-model="forCheckAll" value=""><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></label></div>              </th>
                 <th class="accept" v-if="tempColdata.name">Name</th>
                 <th class="accept" v-if="tempColdata.model">Model</th>
                 <th class="accept" v-if="tempColdata.type">Type</th>
@@ -24,7 +24,8 @@
         </thead>
         <tbody>
             <tr v-for="(data, key) in tableData" v-bind:key="key">
-                <th><div class="checkbox" @click="getDeviceInfo(key)"><label><input type="checkbox" value=""><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></label></div></th>
+                {{insertValueId(key)}}
+                <th><div class="checkbox" @click="getDeviceInfo(key)"><label><input type="checkbox" v-model="forCheckBox[key]" value=""><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></label></div></th>
                 <td v-if="tempColdata.name"><span v-if="editableData.info != key" v-on:dblclick="InLineEdit(data, key, 'name')">{{data.name}}</span> <span v-if="editableData.info == key" @click.self="InLineDataUpdate(data, key)"><input type="text" autofocus class="editable form-control" v-model="editableData.editableDataValue"></span></td>
                 <td v-if="tempColdata.model"><span v-if="editableData.info != key+199" v-on:dblclick="InLineEdit(data, key+199, 'model')">{{data.model}}</span> <span v-if="editableData.info == key+199" @click.self="InLineDataUpdate(data, key)"><input autofocus type="text" class="editable form-control" v-model="editableData.editableDataValue"></span></td>
                 <td v-if="tempColdata.type"><span v-if="editableData.info != key+299" v-on:dblclick="InLineEdit(data, key+299, 'type')">{{data.type}}</span> <span v-if="editableData.info == key+299" @click.self="InLineDataUpdate(data, key)"><input autofocus type="text" class="editable form-control" v-model="editableData.editableDataValue"></span></td>
@@ -115,6 +116,8 @@ export default {
   data () {
     return {
       // tableData: [{'name': 'text', 'model': 'text', 'type': 'text', 'group': 'text', 'MACAddress': 'text', 'IPAddress': 'text', 'SerialNumber': 'text', 'Version': 'text'}],
+      forCheckAll: false,
+      forCheckBox: [],
       multipleSelection: [],
       hover: false,
       editableData: {info: null, editableDataValue: null, editableKey: null},
@@ -133,7 +136,8 @@ export default {
       return this.$store.state.Setting.showHideColumn
     },
     tableData: function () {
-      this.checkIfOutsideDrop = 'true'
+      // this.checkIfOutsideDrop = 'true'
+      this.checkOutSideDrop()
       return this.$store.state.Setting.DisplayTableData
     },
     DroptableData: function () {
@@ -141,6 +145,29 @@ export default {
     }
   },
   methods: {
+    CheckAll () {
+      let THIS = this
+      if (!this.forCheckAll) {
+        THIS.forCheckBox.forEach(function (val, key1) {
+          THIS.forCheckBox[key1] = 'checked'
+        })
+        THIS.forCheckAll = 'checked'
+      } else {
+        THIS.forCheckBox.forEach(function (val, key1) {
+          THIS.forCheckBox[key1] = false
+        })
+        THIS.forCheckAll = false
+      }
+    },
+    checkOutSideDrop () {
+      this.checkIfOutsideDrop = 'true'
+    },
+    insertValueId (id) {
+      if (this.forCheckBox[id]) {
+      } else {
+        this.forCheckBox[id] = false
+      }
+    },
     InLineEdit (data, key, fieldName) {
       console.log('InlineEdit')
       this.editableData.editableDataValue = data[fieldName]
@@ -210,7 +237,6 @@ export default {
     },
     divOuter () {
       if (this.checkIfOutsideDrop) {
-        console.log('fgdh')
         this.$store.commit('RecoverTableSchemaDropOtherSide')
         this.checkIfOutsideDrop = false
       }
@@ -226,7 +252,16 @@ export default {
       }
     },
     getDeviceInfo (key) {
-      this.$store.commit('GetDeviceFullInfo', this.tableData[key])
+      let THIS = this
+      THIS.forCheckAll = false
+      const flag = THIS.forCheckBox[key]
+      THIS.forCheckBox.forEach(function (val, key1) {
+        THIS.forCheckBox[key1] = false
+      })
+      if (!flag) {
+        THIS.forCheckBox[key] = 'checked'
+      }
+      THIS.$store.commit('GetDeviceFullInfo', this.tableData[key])
     }
   },
   mounted () {

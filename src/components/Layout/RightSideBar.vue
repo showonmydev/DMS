@@ -139,3 +139,9 @@ export default {
   }
 }
 </script>
+<style>
+#also{
+/* clear: both; */
+  float: left;
+}
+</style>

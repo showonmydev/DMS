@@ -128,7 +128,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'}],
-    'teo11': [{'name': 'TPE02-D01 This is 1',
+    'teo11': [{'name': 'TPE02-D01 This is 3',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -148,7 +148,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'},
-    {'name': 'TPE02-D01 This is 2',
+    {'name': 'TPE02-D01 This is 4',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -168,7 +168,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'}],
-    'teo311': [{'name': 'TPE02-D01 This is 1',
+    'teo311': [{'name': 'TPE02-D01 This is 5',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -188,7 +188,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'},
-    {'name': 'TPE02-D01 This is 2',
+    {'name': 'TPE02-D01 This is 6',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -208,7 +208,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'}],
-    'teo145': [{'name': 'TPE02-D01 This is 1',
+    'teo145': [{'name': 'TPE02-D01 This is 7',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -228,7 +228,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'},
-    {'name': 'TPE02-D01 This is 2',
+    {'name': 'TPE02-D01 This is 8',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -248,7 +248,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'}],
-    'teo389': [{'name': 'TPE02-D01 This is 1',
+    'teo389': [{'name': 'TPE02-D01 This is 9',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -268,7 +268,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'},
-    {'name': 'TPE02-D01 This is 2',
+    {'name': 'TPE02-D01 This is 10',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -288,7 +288,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'}],
-    'teo10789': [{'name': 'TPE02-D01 This is 1',
+    'teo10789': [{'name': 'TPE02-D01 This is 11',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -308,7 +308,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'},
-    {'name': 'TPE02-D01 This is 2',
+    {'name': 'TPE02-D01 This is 12',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -328,7 +328,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'}],
-    'uncategories': [{'name': 'TPE02-D01 This is 1',
+    'uncategories': [{'name': 'TPE02-D01 This is 13',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -348,7 +348,7 @@ const store = new Vuex.Store({
       'CPU': '20',
       'Memory': '61',
       'Network': '1.2'},
-    {'name': 'TPE02-D01 This is 2',
+    {'name': 'TPE02-D01 This is 14',
       'model': 'ST550K',
       'type': 'Display',
       'group': 'TPE02',
@@ -446,24 +446,25 @@ const store = new Vuex.Store({
     },
     UpdateInlineEdit: (state, obj) => {
       state.Device[obj.key][obj.numKey][obj.name] = obj.value
-      console.log(state.Device[obj.key])
+      // console.log(state.Device[obj.key])
     },
     DropDeviceFromSideBar: (state, obj) => {
-      console.log('Drag DRop')
+      // console.log('Drag DRop')
       var data = state.Setting.DragdropContainer
-      console.log(data)
+      // console.log(data)
       var dropfrom = obj.dropfrom
-      // var dropdatas = obj.dropdata
-      // if (data.length === 0) {
       state.Device[dropfrom.name].unshift(data.list)
-      // }
-      // } else {
-      //   // key: "0", level: "L4", type: "device", groupkey: "teo10789", devicekey: "TPE02-D01 This is 1",
-      //   // let list = state.Device[obj.]
-      //   let list = state.Device[dropdatas.groupkey][dropdatas.key]
-      //   state.Device[dropfrom.name].unshift(list)
-      //   delete state.Device[dropdatas.groupkey][dropdatas.key]
-      // }
+    },
+    DropGroupFromSideBar: (state, obj) => {
+      // console.log('Here in Store')
+      var dropfrom = obj.dropdata
+      var dropto = obj.dropfrom
+      var fromData = state.Device[dropfrom.name]
+      fromData.forEach(function (val, key) {
+        state.Device[dropto.name].unshift(val)
+      })
+      // console.log(state.Device[dropto.name])
+      delete state.Device[dropfrom.name]
     }
   }
 })
