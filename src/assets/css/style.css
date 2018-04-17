@@ -122,7 +122,7 @@ a, a:hover, a:focus, input, textare, button, input:focus, .checkbox, table, th, 
 .centerBar {
     width: 74%;
     display: inline-block;
-        float: left;
+    float: left;
 }
 .sidebar ul {
 	list-style: none;
@@ -482,15 +482,19 @@ a, a:hover, a:focus, input, textare, button, input:focus, .checkbox, table, th, 
   /* -------------------------------------
    * Bar container
    * ------------------------------------- */
-  .progress-radial {
-	float: left;
-	margin-right: 4%;
-	position: relative;
-	width: 22%;
-	border-radius: 50%;
-	border: 1px solid #ff6000;
-	min-height: 130px;
-  }
+   .progress-radial {
+    float: left;
+    margin-right: 2%;
+    position: relative;
+    width: 28%;
+    border-radius: 50%;
+    border: 1px solid #ff6000;
+    min-height: 130px !important;
+}
+.right-tabs-con .tab-content {
+    height: 550px;
+    overflow-y: scroll;
+}
   .sidebar-collapse .right-sidebar-toggle span.glyphicon.glyphicon-backward {
 	transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);
@@ -708,7 +712,10 @@ ul:empty {
 #submenu-1 span {
 cursor: pointer;
 }
-#resizable{min-width: 510px; max-width:1040px;}
+#resizable{
+	min-width: 510px;
+	 /* max-width:1040px; */
+	}
 .fa-share-alt:before {
     margin-left: 0px;
 }

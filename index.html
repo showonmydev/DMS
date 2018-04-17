@@ -22,34 +22,37 @@
     <script type="text/javascript" src="http://akottr.github.io/js/jquery.chili-2.2.js"></script>
   <script>
   $(document).ready(function() {
+    // var widths =  $('.currWidth').val();
     $('.contextMenu').hide();
     $('.main-right-sidebar').attr('style','max-width:606 !important;')
     $('#footerTable').dragtable({dragaccept:'.accept'});
     $( function() {
         var sideIn = $('#also').width();
-        var widths = $('.centerBar').width();
         var mainSideBar = $('.main-right-sidebar').width();
         $( ".centerBar" ).resizable({
         minWidth: 510,
         maxWidth: 1010,
-        alsoResize: "#also",
+        //alsoResize: "#also",
         resize: function( event, ui ) {
+                var widths = $('.currWidth').val();
                 //$('.main-right-sidebar').attr('style','right:0');
                 var wi = parseInt(widths) - parseInt(ui.size.width)
+                //var wi = parseInt(ui.size.width) - parseInt(widths)
                 var main = parseInt(mainSideBar) - parseInt(wi)
-                console.log(wi);
+                console.log('Side'+widths);
+                console.log(ui.size.width);
+                console.log('wi'+wi);
                 if($('.content-wrapper').width() === 510){
                        $('#also').width(574)
-                       //$('.main-right-sidebar').width(582)
-                    // $('.right-sidebar-toggle .glyphicon-forward').addClass('glyphicon-backward')
-                    // $('.right-sidebar-toggle .glyphicon-backward').removeClass('glyphicon-forward')
                 } else {
                     $('.right-sidebar-toggle .glyphicon-backward').addClass('glyphicon-forward')
                     $('.right-sidebar-toggle .glyphicon-forward').removeClass('glyphicon-backward')
                     if ($('.content-wrapper').width() <= 510) {
-                        $('#also').width(wi+sideIn-10);
+                        //$('#also').width(Math.abs(wi)+sideIn-20);
+                        $('#also').width(Math.abs(wi)+sideIn);
                     } else {
-                        $('#also').width(wi+sideIn-10);
+                        $('#also').width(Math.abs(wi)+sideIn);
+                        //$('#also').width(Math.abs(wi)+sideIn-20);
                     }
                 }
           }
@@ -82,6 +85,7 @@
   </script>
   </head>
   <body>
+    <input type="hidden" name="currWidth" class="currWidth" value="1010">
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
@@ -119,12 +123,23 @@ $(window).on('resize', function(){
             $('.lftbar').hide()
             $('.centerBar').width('58%')
             $('.main-right-sidebar').width('42%')
+            // Fix the sidebar Width
+            $('.currWidth').val('1284');
+            $( ".centerBar" ).resizable( "option", "maxWidth", '1284' );
+            $( ".centerBar" ).resizable( "option", "minWidth", '774' );
+            console.log('INN')
+            
         }else{
             $('.right-sidebar-toggle .glyphicon-forward').addClass('glyphicon-backward')
             $('.right-sidebar-toggle .glyphicon-backward').removeClass('glyphicon-forward')
             $('.lftbar').show()
             $('.centerBar').width('74%')
             $('.main-right-sidebar').width('6%')
+            // Fix the sidebar Width
+            $('.currWidth').val('1010');
+            $(".centerBar").resizable( "option", "maxWidth", '1010' );
+            $( ".centerBar" ).resizable( "option", "minWidth", '510' );
+            console.log('INN1')
         }
         
     });
@@ -138,6 +153,11 @@ $(window).on('resize', function(){
             $('#resizable').attr('style','max-width:100%');
             $('.centerBar').width('94%')
             $('.main-right-sidebar').width('81.7px');
+            // Fix the sidebar Width
+            $('.currWidth').val('1284');
+            $( ".centerBar" ).resizable( "option", "maxWidth", '1284' );
+            $( ".centerBar" ).resizable( "option", "minWidth", '774' );
+            console.log('INN')
         }else{
             $('.left-sidebar-toggle .glyphicon-forward').addClass('glyphicon-backward')
             $('.left-sidebar-toggle .glyphicon-backward').removeClass('glyphicon-forward')
@@ -146,6 +166,11 @@ $(window).on('resize', function(){
             $('#resizable').attr('style','max-width:1040px');
             $('.centerBar').width('74%')
             $('.main-right-sidebar').width('6%');
+            // Fix the sidebar Width
+            $('.currWidth').val('1010');
+            $(".centerBar").resizable( "option", "maxWidth", '1010' );
+            $( ".centerBar" ).resizable( "option", "minWidth", '510' );
+            console.log('INN1')
         }
     });
 });

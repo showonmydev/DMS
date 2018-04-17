@@ -206,11 +206,11 @@ export default {
       var deatilsForGroup = this.dropdata
       console.log('clickTarget')
       console.log(this.dropdata)
-      if (dropData.type === 'device') {
+      if (dropData.type === 'device' && name !== '') {
         this.$store.commit('DropDeviceFromSideBar', {dropdata: dropData, dropfrom: {level: level, parentnode: parentnode, name: name}})
         console.log('Device')
       }
-      if (deatilsForGroup.devicetype === 'group') {
+      if (deatilsForGroup.devicetype === 'group' && name !== '') {
         this.$store.commit('DropGroupFromSideBar', {dropdata: deatilsForGroup, dropfrom: {level: level, parentnode: parentnode, name: name}})
         console.log('Group')
       }
